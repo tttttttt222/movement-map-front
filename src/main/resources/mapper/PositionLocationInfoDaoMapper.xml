@@ -21,7 +21,7 @@
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-    <sql id="allColumn">,
+    <sql id="allColumn">
         id,
         position_name,
         lng,
@@ -48,6 +48,7 @@
         WHERE
         lng &gt; #{info.startlng} AND lng &lt; #{info.endlng}
         AND lat &gt; #{info.startlat} AND lat &lt; #{info.endlat}
+        AND display =1;
     </select>
 
 

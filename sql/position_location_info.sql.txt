@@ -1,0 +1,24 @@
+CREATE TABLE `position_location_info` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `position_name` varchar(64) NOT NULL COMMENT '地点名称',
+  `lng` decimal(10,6) NOT NULL COMMENT '经度',
+  `lat` decimal(10,6) NOT NULL COMMENT '纬度',
+  `position_type` int NOT NULL COMMENT '地点类型: ',
+  `display` tinyint NOT NULL DEFAULT '1' COMMENT '是否显示 0 不显示 1 显示',
+  `position_adress` varchar(512) DEFAULT NULL COMMENT '地点地址',
+  `provinces` int DEFAULT NULL COMMENT '省',
+  `cities` int DEFAULT NULL COMMENT '市',
+  `areas` int DEFAULT NULL COMMENT '区',
+  `remark` varchar(256) DEFAULT NULL COMMENT '备注',
+  `rem1` varchar(200) DEFAULT NULL COMMENT '预留字段1',
+  `rem2` varchar(200) DEFAULT NULL COMMENT '预留字段2',
+  `rem3` varchar(200) DEFAULT NULL COMMENT '预留字段3',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ukey_lng_lat` (`lng`,`lat`) USING BTREE,
+  KEY `idx_position_type` (`position_type`) USING BTREE,
+  KEY `idx_create_time` (`create_time`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+INSERT INTO `movement_position`.`position_location_info` (`id`, `position_name`, `lng`, `lat`, `position_type`, `display`, `position_adress`, `provinces`, `cities`, `areas`, `remark`, `rem1`, `rem2`, `rem3`, `create_time`, `update_time`) VALUES ('1', '龙华中路滨江', '121.469959', '31.187304', '1', '1', '龙华中路', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-04 15:10:13', '2021-02-04 15:10:13');

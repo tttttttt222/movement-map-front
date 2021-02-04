@@ -21,7 +21,7 @@
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-    <sql id="allColumn">,
+    <sql id="allColumn">
         id,
         item_name,
         location_id,
@@ -47,6 +47,7 @@
         FROM position_item_info
         WHERE
         location_id = #{lid}
+        AND display =1;
     </select>
 
 
