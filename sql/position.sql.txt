@@ -1,0 +1,74 @@
+CREATE TABLE `position_location_info` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `position_name` varchar(64) NOT NULL COMMENT '地点名称',
+  `lng` decimal(10,6)  NOT NULL COMMENT '经度',
+  `lat` decimal(10,6)  NOT NULL COMMENT '纬度',
+  `position_type` int(11) NOT NULL COMMENT '地点类型: ',
+  `display` tinyint NOT NULL DEFAULT 1  COMMENT '是否显示 0 不显示 1 显示',
+  `position_adress` varchar(512) DEFAULT NULL COMMENT '地点地址',
+  `provinces` int(11) DEFAULT NULL  COMMENT '省',
+  `cities` int(11) DEFAULT NULL  COMMENT '市',
+  `areas` int(11) DEFAULT NULL  COMMENT '区',
+  `remark` varchar(256) DEFAULT NULL COMMENT '备注',
+  `rem1` varchar(200)  DEFAULT NULL COMMENT '预留字段1',
+  `rem2` varchar(200)  DEFAULT NULL COMMENT '预留字段2',
+  `rem3` varchar(200)  DEFAULT NULL COMMENT '预留字段3',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ukey_lng_lat` (`lng`,`lat`) USING BTREE,
+  KEY `idx_position_type` (`position_type`) USING BTREE,
+  KEY `idx_create_time` (`create_time`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `position_item_info` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `item_name` varchar(64) NOT NULL COMMENT '项目名称',
+  `location_id` int(11) NOT NULL COMMENT '地点信息id',
+  `position_type` int(11) NOT NULL COMMENT '地点类型: ',
+  `item_type` int(11) NOT NULL COMMENT '项目类型: ',
+  `display` tinyint NOT NULL DEFAULT 1  COMMENT '是否显示 0 不显示 1 显示',
+  `item_score` decimal(6,2) NOT NULL COMMENT '难度评分: 0-5',
+  `item_brief` text COMMENT '简介',
+  `item_video_url` varchar(512) DEFAULT NULL COMMENT '视频地址',
+  `item_video_img_url` varchar(512) DEFAULT NULL COMMENT '视频封面地址',
+  `remark` varchar(256) DEFAULT NULL COMMENT '备注',
+  `rem1` varchar(200)  DEFAULT NULL COMMENT '预留字段1',
+  `rem2` varchar(200)  DEFAULT NULL COMMENT '预留字段2',
+  `rem3` varchar(200)  DEFAULT NULL COMMENT '预留字段3',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_itm_type` (`item_type` , `item_score`) USING BTREE,
+  KEY `idx_create_time` (`create_time`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `provinces` (
+   `id` int(11) NOT NULL AUTO_INCREMENT,
+   `provinceid` int(11) NOT NULL,
+   `province` varchar(100) NOT NULL DEFAULT '',
+   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `cities` (
+   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+   `cityid` char(6) NOT NULL COMMENT '城市编码',
+   `city` varchar(40) NOT NULL COMMENT '城市名称',
+   `provinceid` char(6) NOT NULL COMMENT '所属省份编码',
+   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   PRIMARY KEY (`id`)
+ ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COMMENT='城市信息表'
+
+ CREATE TABLE `areas` (
+   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+   `areaid` char(6) NOT NULL COMMENT '区县编码',
+   `area` varchar(40) NOT NULL COMMENT '区县名称',
+   `cityid` char(6) NOT NULL COMMENT '所属城市编码',
+   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   PRIMARY KEY (`id`)
+ ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COMMENT='区县信息表'

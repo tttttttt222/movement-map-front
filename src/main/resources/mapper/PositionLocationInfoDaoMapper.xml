@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.movement.front.map.dao.mapper.PositionLocationInfoDao">
+
+    <resultMap id="PositionLocationInfoMap" type="com.movement.front.map.dao.model.PositionLocationInfo">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="position_name" property="positionName" jdbcType="VARCHAR"/>
+        <result column="lng" property="lng" jdbcType="DECIMAL"/>
+        <result column="lat" property="lat" jdbcType="DECIMAL"/>
+        <result column="position_type" property="positionType" jdbcType="INTEGER"/>
+        <result column="display" property="display" jdbcType="TINYINT"/>
+        <result column="position_adress" property="positionAdress" jdbcType="VARCHAR"/>
+        <result column="provinces" property="provinces" jdbcType="INTEGER"/>
+        <result column="cities" property="cities" jdbcType="INTEGER"/>
+        <result column="areas" property="areas" jdbcType="INTEGER"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="rem1" property="rem1" jdbcType="VARCHAR"/>
+        <result column="rem2" property="rem2" jdbcType="VARCHAR"/>
+        <result column="rem3" property="rem3" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="allColumn">,
+        id,
+        position_name,
+        lng,
+        lat,
+        position_type,
+        display,
+        position_adress,
+        provinces,
+        cities,
+        areas,
+        remark,
+        rem1,
+        rem2,
+        rem3,
+        create_time,
+        update_time
+    </sql>
+
+
+    <select id="queryPositionLocationInfoNear" resultMap="PositionLocationInfoMap">
+        SELECT
+        <include refid="allColumn"/>
+        FROM position_location_info
+        WHERE
+        lng &gt; #{info.startlng} AND lng &lt; #{info.endlng}
+        AND lat &gt; #{info.startlat} AND lat &lt; #{info.endlat}
+    </select>
+
+
+    <update id="updatePositionLocationInfoNear" parameterType="com.movement.front.map.dao.model.PositionLocationInfo">
+        UPDATE position_location_info
+        <set>
+            <if test=" info.id != null">
+                id =#{info.id},
+            </if>
+            <if test=" info.positionName != null and info.positionName != ''">
+                position_name =#{info.positionName},
+            </if>
+            <if test=" info.lng != null">
+                lng =#{info.lng},
+            </if>
+            <if test=" info.lat != null">
+                lat =#{info.lat},
+            </if>
+            <if test=" info.positionType != null">
+                position_type =#{info.positionType},
+            </if>
+            <if test=" info.display != null">
+                display =#{info.display},
+            </if>
+            <if test=" info.positionAdress != null and info.positionAdress != ''">
+                position_adress =#{info.positionAdress},
+            </if>
+            <if test=" info.provinces != null">
+                provinces =#{info.provinces},
+            </if>
+            <if test=" info.cities != null">
+                cities =#{info.cities},
+            </if>
+            <if test=" info.areas != null">
+                areas =#{info.areas},
+            </if>
+            <if test=" info.remark != null and info.remark != ''">
+                remark =#{info.remark},
+            </if>
+            <if test=" info.rem1 != null and info.rem1 != ''">
+                rem1 =#{info.rem1},
+            </if>
+            <if test=" info.rem2 != null and info.rem2 != ''">
+                rem2 =#{info.rem2},
+            </if>
+            <if test=" info.rem3 != null and info.rem3 != ''">
+                rem3 =#{info.rem3},
+            </if>
+            updatetime = now()
+        </set>
+        WHERE id =#{info.id}
+    </update>
+
+
+    <insert id="insertPositionLocationInfoNear" parameterType="com.movement.front.map.dao.model.PositionLocationInfo">
+        INSERT INTO position_location_info (position_name,
+                                            lng,
+                                            lat,
+                                            position_type,
+                                            display,
+                                            position_adress,
+                                            provinces,
+                                            cities,
+                                            areas,
+                                            remark,
+                                            rem1,
+                                            rem2,
+                                            rem3,
+                                            create_time,
+                                            updatetime)
+        VALUES (#{info.positionName},
+                #{info.lng},
+                #{info.lat},
+                #{info.positionType},
+                #{info.display},
+                #{info.positionAdress},
+                #{info.provinces},
+                #{info.cities},
+                #{info.areas},
+                #{info.remark},
+                #{info.rem1},
+                #{info.rem2},
+                #{info.rem3},
+                NOW(),
+                NOW())
+    </insert>
+
+</mapper>

@@ -12,5 +12,6 @@ import lombok.Data;
 public class Meta {
 
     private String msg;
+    //1成功 2 失败
     private Integer status;
 }
