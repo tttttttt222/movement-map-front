@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.movement.front.map.dao.mapper.PositionItemInfoDao">
+
+    <resultMap id="PositionLocationInfoMap" type="com.movement.front.map.dao.model.PositionItemInfo">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="item_name" property="itemName" jdbcType="VARCHAR"/>
+        <result column="location_id" property="locationId" jdbcType="INTEGER"/>
+        <result column="position_type" property="positionType" jdbcType="INTEGER"/>
+        <result column="item_type" property="itemType" jdbcType="INTEGER"/>
+        <result column="display" property="display" jdbcType="TINYINT"/>
+        <result column="item_score" property="itemScore" jdbcType="DECIMAL"/>
+        <result column="item_brief" property="itemBrief" jdbcType="VARCHAR"/>
+        <result column="item_video_url" property="itemVideoUrl" jdbcType="VARCHAR"/>
+        <result column="item_video_img_url" property="itemVideoImgUrl" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="rem1" property="rem1" jdbcType="VARCHAR"/>
+        <result column="rem2" property="rem2" jdbcType="VARCHAR"/>
+        <result column="rem3" property="rem3" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="allColumn">,
+        id,
+        item_name,
+        location_id,
+        position_type,
+        item_type,
+        display,
+        item_score,
+        item_brief,
+        item_video_url,
+        item_video_img_url,
+        remark,
+        rem1,
+        rem2,
+        rem3,
+        create_time,
+        update_time
+    </sql>
+
+
+    <select id="queryPositionItemByLid" resultMap="PositionLocationInfoMap">
+        SELECT
+        <include refid="allColumn"/>
+        FROM position_item_info
+        WHERE
+        location_id = #{lid}
+    </select>
+
+
+    <update id="updatePositionItemInfo" parameterType="com.movement.front.map.dao.model.PositionItemInfo">
+        UPDATE position_item_info
+        <set>
+            <if test=" info.itemName != null and info.itemName != ''">
+                item_name =#{info.itemName},
+            </if>
+            <if test=" info.locationId != null">
+                location_id =#{info.locationId},
+            </if>
+            <if test=" info.positionType != null">
+                position_type =#{info.positionType},
+            </if>
+            <if test=" info.itemType != null">
+                item_type =#{info.itemType},
+            </if>
+            <if test=" info.display != null">
+                display =#{info.display},
+            </if>
+            <if test=" info.itemScore != null">
+                item_score =#{info.itemScore},
+            </if>
+            <if test=" info.itemBrief != null and info.itemBrief != ''">
+                item_brief =#{info.itemBrief},
+            </if>
+            <if test=" info.itemVideoUrl != null and info.itemVideoUrl != ''">
+                item_video_url =#{info.itemVideoUrl},
+            </if>
+            <if test=" info.itemVideoImgUrl != null and info.itemVideoImgUrl != ''">
+                item_video_img_url =#{info.itemVideoImgUrl},
+            </if>
+            <if test=" info.remark != null and info.remark != ''">
+                remark =#{info.remark},
+            </if>
+            <if test=" info.rem1 != null and info.rem1 != ''">
+                rem1 =#{info.rem1},
+            </if>
+            <if test=" info.rem2 != null and info.rem2 != ''">
+                rem2 =#{info.rem2},
+            </if>
+            <if test=" info.rem3 != null and info.rem3 != ''">
+                rem3 =#{info.rem3},
+            </if>
+            updatetime = now()
+        </set>
+        WHERE id =#{info.id}
+    </update>
+
+
+    <insert id="insertPositionItemInfo" parameterType="com.movement.front.map.dao.model.PositionItemInfo">
+        INSERT INTO position_item_info (item_name,
+                                        location_id,
+                                        position_type,
+                                        item_type,
+                                        display,
+                                        item_score,
+                                        item_brief,
+                                        item_video_url,
+                                        item_video_img_url,
+                                        remark,
+                                        rem1,
+                                        rem2,
+                                        rem3,
+                                        create_time,
+                                        update_time)
+        VALUES (#{info.itemName},
+                #{info.locationId},
+                #{info.positionType},
+                #{info.itemType},
+                #{info.display},
+                #{info.itemScore},
+                #{info.itemBrief},
+                #{info.itemVideoUrl},
+                #{info.itemVideoImgUrl},
+                #{info.remark},
+                #{info.rem1},
+                #{info.rem2},
+                #{info.rem3},
+                NOW(),
+                NOW())
+    </insert>
+
+</mapper>

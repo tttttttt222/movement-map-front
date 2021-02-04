@@ -13,9 +13,9 @@ public interface PositionLocationInfoDao {
 
 	List<PositionLocationInfo> queryPositionLocationInfoNear(@Param("info") PositionLocationQueryDto positionLocationQueryDto);
 
-	void updatePositionLocationInfoNear(@Param("info") PositionLocationInfo positionLocationInfo);
+	void updatePositionLocationInfo(@Param("info") PositionLocationInfo positionLocationInfo);
 
-	void insertPositionLocationInfoNear(@Param("info") PositionLocationInfo positionLocationInfo);
+	void insertPositionLocationInfo(@Param("info") PositionLocationInfo positionLocationInfo);
 
 
 }

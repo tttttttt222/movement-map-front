@@ -51,12 +51,9 @@
     </select>
 
 
-    <update id="updatePositionLocationInfoNear" parameterType="com.movement.front.map.dao.model.PositionLocationInfo">
+    <update id="updatePositionLocationInfo" parameterType="com.movement.front.map.dao.model.PositionLocationInfo">
         UPDATE position_location_info
         <set>
-            <if test=" info.id != null">
-                id =#{info.id},
-            </if>
             <if test=" info.positionName != null and info.positionName != ''">
                 position_name =#{info.positionName},
             </if>
@@ -102,7 +99,7 @@
     </update>
 
 
-    <insert id="insertPositionLocationInfoNear" parameterType="com.movement.front.map.dao.model.PositionLocationInfo">
+    <insert id="insertPositionLocationInfo" parameterType="com.movement.front.map.dao.model.PositionLocationInfo">
         INSERT INTO position_location_info (position_name,
                                             lng,
                                             lat,
