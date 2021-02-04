@@ -29,7 +29,7 @@ public class PositionLocationServiceImpl implements PositionLocationService {
 		List<PositionLocationInfoResponse> res = new ArrayList<>();
 
 		PositionLocationQueryDto positionLocationQueryDto = new PositionLocationQueryDto(Constant.radius,
-				queryRequest.getLat(), queryRequest.getLng());
+				queryRequest.getLng(), queryRequest.getLat());
 		List<PositionLocationInfo> positionLocationInfos = positionLocationInfoDao
 				.queryPositionLocationInfoNear(positionLocationQueryDto);
 
