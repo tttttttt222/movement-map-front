@@ -40,6 +40,8 @@ public class PositionLocationInfoResponse {
 	//区
 	private Integer areas;
 
+	private String itemCount;
+
 	//备注
 	private String remark;
 

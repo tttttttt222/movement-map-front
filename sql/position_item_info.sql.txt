@@ -17,7 +17,8 @@ CREATE TABLE `position_item_info` (
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `idx_itm_type` (`item_type`,`item_score`) USING BTREE,
-  KEY `idx_create_time` (`create_time`) USING BTREE
+  KEY `idx_create_time` (`create_time`) USING BTREE,
+  KEY `idx_lid` (`location_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 INSERT INTO `movement_position`.`position_item_info` (`id`, `item_name`, `location_id`, `position_type`, `item_type`, `display`, `item_score`, `item_brief`, `item_video_url`, `item_video_img_url`, `remark`, `rem1`, `rem2`, `rem3`, `create_time`, `update_time`) VALUES ('1', '龙华中路-攀岩墙', '1', '1', '1', '1', '1.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-04 15:13:18', '2021-02-04 15:13:18');
@@ -25,3 +26,4 @@ INSERT INTO `movement_position`.`position_item_info` (`id`, `item_name`, `locati
 INSERT INTO `movement_position`.`position_item_info` (`id`, `item_name`, `location_id`, `position_type`, `item_type`, `display`, `item_score`, `item_brief`, `item_video_url`, `item_video_img_url`, `remark`, `rem1`, `rem2`, `rem3`, `create_time`, `update_time`) VALUES ('3', '龙华中路-上墙', '1', '1', '1', '1', '2.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-04 15:14:33', '2021-02-04 15:14:33');
 INSERT INTO `movement_position`.`position_item_info` (`id`, `item_name`, `location_id`, `position_type`, `item_type`, `display`, `item_score`, `item_brief`, `item_video_url`, `item_video_img_url`, `remark`, `rem1`, `rem2`, `rem3`, `create_time`, `update_time`) VALUES ('4', '龙华中路-滑板场', '1', '1', '1', '1', '3.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-04 15:15:16', '2021-02-04 15:15:16');
 INSERT INTO `movement_position`.`position_item_info` (`id`, `item_name`, `location_id`, `position_type`, `item_type`, `display`, `item_score`, `item_brief`, `item_video_url`, `item_video_img_url`, `remark`, `rem1`, `rem2`, `rem3`, `create_time`, `update_time`) VALUES ('5', '龙华中路-星巴克', '1', '1', '1', '1', '3.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-04 15:16:19', '2021-02-04 15:16:19');
+INSERT INTO `movement_position`.`position_item_info` (`id`, `item_name`, `location_id`, `position_type`, `item_type`, `display`, `item_score`, `item_brief`, `item_video_url`, `item_video_img_url`, `remark`, `rem1`, `rem2`, `rem3`, `create_time`, `update_time`) VALUES ('6', '龙耀路', '2', '2', '1', '1', '3.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-07 10:35:08', '2021-02-07 10:35:08');

@@ -18,5 +18,7 @@ public interface PositionItemInfoDao {
 
 	void insertPositionItemInfo(@Param("info") PositionItemInfo info);
 
+	Integer positionItemCountByLid(Long lid);
+
 
 }

@@ -4,7 +4,9 @@ import com.movement.front.map.common.Constant;
 import com.movement.front.map.controller.http.request.PositionLocationQueryRequest;
 import com.movement.front.map.controller.http.response.PositionLocationInfoResponse;
 import com.movement.front.map.dao.dto.PositionLocationQueryDto;
+import com.movement.front.map.dao.mapper.PositionItemInfoDao;
 import com.movement.front.map.dao.mapper.PositionLocationInfoDao;
+import com.movement.front.map.dao.model.PositionItemInfo;
 import com.movement.front.map.dao.model.PositionLocationInfo;
 import com.movement.front.map.service.PositionLocationService;
 import java.util.ArrayList;
@@ -24,6 +26,9 @@ public class PositionLocationServiceImpl implements PositionLocationService {
 	@Autowired
 	private PositionLocationInfoDao positionLocationInfoDao;
 
+	@Autowired
+	private PositionItemInfoDao positionItemInfoDao;
+
 	@Override
 	public List<PositionLocationInfoResponse> queryLocationsNear(PositionLocationQueryRequest queryRequest) {
 		List<PositionLocationInfoResponse> res = new ArrayList<>();
@@ -36,6 +41,9 @@ public class PositionLocationServiceImpl implements PositionLocationService {
 		for (PositionLocationInfo positionLocationInfo : positionLocationInfos) {
 			PositionLocationInfoResponse positionLocationInfoResponse = new PositionLocationInfoResponse();
 			BeanUtils.copyProperties(positionLocationInfo, positionLocationInfoResponse);
+			positionLocationInfoResponse
+					.setItemCount(
+							String.valueOf(positionItemInfoDao.positionItemCountByLid(positionLocationInfo.getId())));
 			res.add(positionLocationInfoResponse);
 		}
 

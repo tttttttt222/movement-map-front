@@ -132,4 +132,13 @@
                 NOW())
     </insert>
 
+    <select id="positionItemCountByLid" resultType="java.lang.Integer">
+        SELECT
+        count(*)
+        FROM position_item_info
+        WHERE
+        location_id = #{lid}
+        AND display =1;
+    </select>
+
 </mapper>

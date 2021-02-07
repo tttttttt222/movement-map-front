@@ -22,3 +22,4 @@ CREATE TABLE `position_location_info` (
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 INSERT INTO `movement_position`.`position_location_info` (`id`, `position_name`, `lng`, `lat`, `position_type`, `display`, `position_adress`, `provinces`, `cities`, `areas`, `remark`, `rem1`, `rem2`, `rem3`, `create_time`, `update_time`) VALUES ('1', '龙华中路滨江', '121.469959', '31.187304', '1', '1', '龙华中路', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-04 15:10:13', '2021-02-04 15:10:13');
+INSERT INTO `movement_position`.`position_location_info` (`id`, `position_name`, `lng`, `lat`, `position_type`, `display`, `position_adress`, `provinces`, `cities`, `areas`, `remark`, `rem1`, `rem2`, `rem3`, `create_time`, `update_time`) VALUES ('2', '龙耀路', '121.459731', '31.159636', '1', '1', '龙耀路', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-07 10:17:46', '2021-02-07 10:18:05');
