@@ -34,6 +34,9 @@ public class PositionItemInfo {
 	//简介
 	private String itemBrief;
 
+
+	private String itemAdress;
+
 	//视频地址
 	private String itemVideoUrl;
 

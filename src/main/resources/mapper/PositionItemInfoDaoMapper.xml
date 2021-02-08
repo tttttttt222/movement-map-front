@@ -10,6 +10,7 @@
         <result column="item_type" property="itemType" jdbcType="INTEGER"/>
         <result column="display" property="display" jdbcType="TINYINT"/>
         <result column="item_score" property="itemScore" jdbcType="DECIMAL"/>
+        <result column="item_adress" property="itemAdress" jdbcType="DECIMAL"/>
         <result column="item_brief" property="itemBrief" jdbcType="VARCHAR"/>
         <result column="item_video_url" property="itemVideoUrl" jdbcType="VARCHAR"/>
         <result column="item_video_img_url" property="itemVideoImgUrl" jdbcType="VARCHAR"/>
@@ -30,6 +31,7 @@
         display,
         item_score,
         item_brief,
+        item_adress,
         item_video_url,
         item_video_img_url,
         remark,
@@ -75,6 +77,9 @@
             <if test=" info.itemBrief != null and info.itemBrief != ''">
                 item_brief =#{info.itemBrief},
             </if>
+            <if test=" info.itemAdress != null and info.itemAdress != ''">
+                item_adress =#{info.itemAdress},
+            </if>
             <if test=" info.itemVideoUrl != null and info.itemVideoUrl != ''">
                 item_video_url =#{info.itemVideoUrl},
             </if>
@@ -106,6 +111,7 @@
                                         item_type,
                                         display,
                                         item_score,
+                                        item_adress,
                                         item_brief,
                                         item_video_url,
                                         item_video_img_url,
@@ -121,6 +127,7 @@
                 #{info.itemType},
                 #{info.display},
                 #{info.itemScore},
+                #{info.itemAdress},
                 #{info.itemBrief},
                 #{info.itemVideoUrl},
                 #{info.itemVideoImgUrl},

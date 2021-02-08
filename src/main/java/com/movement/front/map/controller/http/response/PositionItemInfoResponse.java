@@ -40,6 +40,9 @@ public class PositionItemInfoResponse {
 	//视频封面地址
 	private String itemVideoImgUrl;
 
+
+	private String itemAdress;
+
 	//备注
 	private String remark;
 

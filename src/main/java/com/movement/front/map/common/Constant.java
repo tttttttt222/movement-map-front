@@ -7,6 +7,6 @@ import java.math.BigDecimal;
  */
 public class Constant {
 
-	public static final BigDecimal radius = new BigDecimal(5);
+	public static final BigDecimal radius = new BigDecimal(1);
 
 }
