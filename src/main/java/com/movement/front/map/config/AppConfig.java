@@ -1,6 +1,7 @@
 package com.movement.front.map.config;
 
 import com.movement.front.map.config.bean.SpringBeanUtil;
+import com.movement.front.map.dao.dto.AuthInfoDto;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy;
@@ -43,9 +44,9 @@ public class AppConfig {
 		return executor;
 	}
 
-//	@Bean
-//	public Map<String, AuthInfoDto> redisCache(){
-//		return new ConcurrentHashMap<>();
-//	}
+	@Bean
+	public Map<String, AuthInfoDto> redisCache(){
+		return new ConcurrentHashMap<>();
+	}
 
 }
