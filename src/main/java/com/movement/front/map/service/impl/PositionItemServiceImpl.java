@@ -1,6 +1,7 @@
 package com.movement.front.map.service.impl;
 
 import com.movement.front.map.common.Constant;
+import com.movement.front.map.controller.http.request.PositionItemAddInfo;
 import com.movement.front.map.controller.http.request.PositionLocationQueryRequest;
 import com.movement.front.map.controller.http.response.PositionItemInfoResponse;
 import com.movement.front.map.controller.http.response.PositionLocationInfoResponse;
@@ -16,6 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionTemplate;
 
 /**
  * 项目名称:vue-shop-manager 描述: 创建人:ryw 创建时间:2020/2/14
@@ -26,6 +29,9 @@ public class PositionItemServiceImpl implements PositionItemService {
 
 	@Autowired
 	private PositionItemInfoDao positionItemInfoDao;
+
+	@Autowired
+	private TransactionTemplate transactionTemplate;
 
 	@Override
 	public List<PositionItemInfoResponse> queryByLid(Long lid) {
@@ -40,6 +46,22 @@ public class PositionItemServiceImpl implements PositionItemService {
 		}
 
 		return res;
+	}
+
+	@Override
+	public Integer insertItem(PositionItemAddInfo addRequest) {
+		try {
+			transactionTemplate.execute((TransactionCallback) transactionStatus -> {
+				PositionItemInfo positionItemInfo = new PositionItemInfo();
+				BeanUtils.copyProperties(addRequest, positionItemInfo);
+				positionItemInfoDao.insertPositionItemInfo(positionItemInfo);
+				return null;
+			});
+		} catch (Exception e) {
+			log.error("添加地点失败", e.getMessage());
+			return null;
+		}
+		return 1;
 	}
 
 

@@ -1,5 +1,6 @@
 package com.movement.front.map.service;
 
+import com.movement.front.map.controller.http.request.PositionItemAddInfo;
 import com.movement.front.map.controller.http.request.PositionLocationQueryRequest;
 import com.movement.front.map.controller.http.response.PositionItemInfoResponse;
 import com.movement.front.map.controller.http.response.PositionLocationInfoResponse;
@@ -16,4 +17,5 @@ public interface PositionItemService {
     List<PositionItemInfoResponse> queryByLid(Long lid);
 
 
+	Integer insertItem(PositionItemAddInfo addRequest);
 }

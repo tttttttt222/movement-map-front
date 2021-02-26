@@ -1,5 +1,6 @@
 package com.movement.front.map.controller;
 
+import com.movement.front.map.controller.http.request.PositionLocationAddRequest;
 import com.movement.front.map.controller.http.request.PositionLocationQueryRequest;
 import com.movement.front.map.controller.http.response.PositionLocationInfoResponse;
 import com.movement.front.map.controller.http.response.base.HttpResponse;
@@ -39,6 +40,26 @@ public class PositionLocationController {
 		httpResponse.getMeta().setMsg("");
 		httpResponse.getMeta().setStatus(1);
 
+		return httpResponse;
+	}
+
+	@PostMapping("/addLocation")
+	@ResponseBody
+	public HttpResponse addLocation(HttpServletRequest request, @RequestBody PositionLocationAddRequest addRequest) {
+		HttpResponse httpResponse = new HttpResponse(new Meta());
+		if (addRequest.getDisplay() == null) {
+			addRequest.setDisplay(1);
+		}
+		Integer res = positionLocationService.insertLocation(addRequest);
+
+		if (res == null || res <= 0) {
+			httpResponse.getMeta().setMsg("创建地点失败");
+			httpResponse.getMeta().setStatus(2);
+			return httpResponse;
+		}
+
+		httpResponse.getMeta().setMsg("创建地点成功");
+		httpResponse.getMeta().setStatus(1);
 		return httpResponse;
 	}
 

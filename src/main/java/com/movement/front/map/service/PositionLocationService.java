@@ -1,5 +1,6 @@
 package com.movement.front.map.service;
 
+import com.movement.front.map.controller.http.request.PositionLocationAddRequest;
 import com.movement.front.map.controller.http.request.PositionLocationQueryRequest;
 import com.movement.front.map.controller.http.response.PositionLocationInfoResponse;
 import java.util.List;
@@ -15,4 +16,5 @@ public interface PositionLocationService {
     List<PositionLocationInfoResponse> queryLocationsNear(PositionLocationQueryRequest queryRequest);
 
 
+	Integer insertLocation(PositionLocationAddRequest addRequest);
 }

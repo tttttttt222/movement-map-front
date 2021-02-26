@@ -115,7 +115,7 @@
                                             rem2,
                                             rem3,
                                             create_time,
-                                            updatetime)
+                                            update_time)
         VALUES (#{info.positionName},
                 #{info.lng},
                 #{info.lat},
