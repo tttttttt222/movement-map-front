@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.movement.front.map.dao.mapper.ProvincesDao">
+
+    <resultMap id="ProvincesMap" type="com.movement.front.map.dao.model.Provinces">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="province_id" property="provinceId" jdbcType="INTEGER"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="allColumn">
+        id,
+        province_id,
+        province,
+        create_time,
+        update_time
+    </sql>
+
+
+    <select id="queryProvincesByProvinceId" resultMap="ProvincesMap">
+        SELECT
+        <include refid="allColumn"/>
+        FROM provinces
+        WHERE province_id = #{provinceId}
+    </select>
+
+
+    <select id="queryProvincesAll" resultMap="ProvincesMap">
+        SELECT
+        <include refid="allColumn"/>
+        FROM provinces
+    </select>
+
+
+</mapper>
