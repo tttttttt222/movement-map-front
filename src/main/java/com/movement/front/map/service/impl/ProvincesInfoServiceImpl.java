@@ -33,7 +33,7 @@ public class ProvincesInfoServiceImpl implements ProvincesInfoService {
 		List<Provinces> provinces = provincesDao.queryProvincesAll();
 		for (Provinces province : provinces) {
 			ProvincesResponse provincesResponse = new ProvincesResponse();
-			BeanUtils.copyProperties(provincesResponse, province);
+			BeanUtils.copyProperties(province, provincesResponse);
 			res.add(provincesResponse);
 		}
 		return res;
@@ -41,12 +41,12 @@ public class ProvincesInfoServiceImpl implements ProvincesInfoService {
 
 
 	@Override
-	public List<CitiesResponse> queryCitiesByProvinceId(Integer provinceId){
+	public List<CitiesResponse> queryCitiesByProvinceId(Integer provinceId) {
 		List<CitiesResponse> res = new ArrayList<>();
 		List<Cities> cities = citiesDao.queryCitiesByProvinceId(provinceId);
 		for (Cities city : cities) {
 			CitiesResponse citiesResponse = new CitiesResponse();
-			BeanUtils.copyProperties(citiesResponse, city);
+			BeanUtils.copyProperties(city, citiesResponse);
 			res.add(citiesResponse);
 		}
 		return res;

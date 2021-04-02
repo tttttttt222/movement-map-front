@@ -21,7 +21,8 @@ public class InterceptorConfig implements WebMvcConfigurer {
 				.addPathPatterns("/movement/front/**")
 				.excludePathPatterns("/movement/front/login")
 				.excludePathPatterns("/movement/front/item/**")
-				.excludePathPatterns("/movement/front/location/**");
+				.excludePathPatterns("/movement/front/location/**")
+				.excludePathPatterns("/movement/front/provinces/**");
 
 	}
 
